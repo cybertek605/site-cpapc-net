@@ -1,0 +1,12 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, telHref } from '../site.config';
+---
+<Base title={`${site.name} | ${site.legalName}`} description={`${site.name} (${site.legalName}), ${site.location}.`}>
+  <main>
+    <h1>{site.name}</h1>
+    <p class="sub">{site.legalName} &middot; {site.location}</p>
+    <p>Please contact our office by phone.</p>
+    <p><strong>Phone:</strong> <a href={telHref}>{site.phone}</a><br /><strong>Address:</strong> {site.address}</p>
+  </main>
+</Base>

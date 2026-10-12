@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, telHref } from '../site.config';
+---
+<Base title={`Privacy Policy: ${site.name}`} description={`Privacy policy for ${site.name} (${site.legalName}), including text messaging.`}>
+  <main>
+    <h1>Privacy Policy</h1>
+    <p class="sub">{site.name} ({site.legalName}). Effective {site.effectiveDate}. See also our <a href="/sms-terms">Text Messaging Terms</a>.</p>
+
+    <h3>Information we collect</h3>
+    <p>When you contact or text {site.name}, we may collect personally identifiable information such as your name, your mobile phone number, your email address, the content of your messages, and the date and time of each message. This website does not use analytics or tracking scripts.</p>
+
+    <h3>How we use your information</h3>
+    <p>We use this information only to communicate with you about the services you have asked about or are receiving from {site.name}, such as scheduling appointments and requesting documents or information.</p>
+
+    <h3>How we share your information</h3>
+    <p>We do not sell, rent, or disclose your personal information to third parties without your consent, except as required by law or as needed to deliver your messages. We do not share it with third parties for marketing purposes.</p>
+    <p><strong>No phone/mobile number information will be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</strong></p>
+    <p>Text messages are delivered through the business phone system operated for {site.name} by Cybertek Systems, a managed IT services provider in Winner, South Dakota, and its telecommunications carrier. These service providers handle messages only to deliver them and keep them secure. They do not use your information for their own marketing.</p>
+
+    <h3>Retention and security</h3>
+    <p>Messages are kept only as long as needed to serve you or as the law requires. We use reasonable technical and administrative safeguards to protect them.</p>
+
+    <h3>Your choices: opting out and deleting your data</h3>
+    <p>Reply <strong>STOP</strong> at any time to stop receiving text messages. To ask what information we hold about you, or to have it corrected or deleted, call <a href={telHref}>{site.phone}</a>.</p>
+
+    <h3>Contact</h3>
+    <p>{site.name} ({site.legalName}), {site.address}. Phone: {site.phone}.</p>
+  </main>
+</Base>

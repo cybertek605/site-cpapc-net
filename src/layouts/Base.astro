@@ -1,0 +1,47 @@
+---
+// Deliberately bare: NO analytics, NO session replay, NO trackers, NO third-party scripts.
+import { site } from '../site.config';
+interface Props { title: string; description: string; }
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <style is:global>
+      :root { --ink:#1a1a1a; --muted:#555; --line:#e2e2e2; --accent:#1f4e79; --bg:#fafaf8; }
+      * { box-sizing: border-box; }
+      body { margin:0; background:var(--bg); color:var(--ink);
+        font-family: system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+        line-height:1.7; font-size:17px; }
+      header.top { background:#fff; border-bottom:1px solid var(--line); }
+      header.top .in { max-width:760px; margin:0 auto; padding:22px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+      header.top a.brand { font-weight:700; font-size:19px; color:var(--ink); text-decoration:none; }
+      header.top nav a { margin-left:18px; font-size:15px; }
+      main { max-width:760px; margin:0 auto; padding:44px 22px 72px; }
+      h1 { font-size:30px; line-height:1.2; margin:0 0 8px; }
+      h2 { font-size:23px; margin:44px 0 12px; border-bottom:2px solid var(--accent); padding-bottom:6px; scroll-margin-top:20px; }
+      h3 { font-size:18px; margin:24px 0 6px; }
+      .sub { color:var(--muted); margin:0 0 28px; }
+      a { color:var(--accent); }
+      ul { padding-left:22px; }
+      footer { max-width:760px; margin:0 auto; padding:24px 22px 48px; color:var(--muted); font-size:14px; border-top:1px solid var(--line); }
+      footer .links a { margin-right:18px; }
+    </style>
+  </head>
+  <body>
+    <header class="top"><div class="in">
+      <a class="brand" href="/">{site.name}</a>
+      <nav><a href="/sms-terms">Text Messaging Terms</a><a href="/privacy">Privacy Policy</a></nav>
+    </div></header>
+    <slot />
+    <footer>
+      <p class="links"><a href="/privacy">Privacy Policy</a><a href="/sms-terms">Text Messaging Terms</a></p>
+      <p>&copy; {site.name}. {site.name} is {site.legalName}. {site.address}. {site.phone}</p>
+    </footer>
+  </body>
+</html>
