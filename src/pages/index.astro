@@ -1,12 +1,46 @@
 ---
 import Base from '../layouts/Base.astro';
 import { site, telHref } from '../site.config';
+import { home } from '../content';
+const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`;
 ---
-<Base title={`${site.name} | ${site.legalName}`} description={`${site.name} (${site.legalName}), ${site.location}.`}>
+<Base title={`${site.name} | ${site.legalName}`} description={`${site.name} (${site.legalName}), a CPA firm in ${site.location}.`}>
+  <section class="hero">
+    <div class="wrap">
+      <h1>{site.name}</h1>
+      <p class="legal">{site.legalName}</p>
+      <p class="tagline">{home.tagline}</p>
+      <p class="intro">{home.intro}</p>
+      <p class="cta"><a class="btn" href={telHref}>Call {site.phone}</a> <a class="btn alt" href="/contact">Send a message</a></p>
+    </div>
+  </section>
+
   <main>
-    <h1>{site.name}</h1>
-    <p class="sub">{site.legalName} &middot; {site.location}</p>
-    <p>Please contact our office by phone, or <a href="/contact">send us a message</a>.</p>
-    <p><strong>Phone:</strong> <a href={telHref}>{site.phone}</a><br /><strong>Address:</strong> {site.address}</p>
+    <h2>What we do</h2>
+    <ul class="cards">
+      {home.services.map((s) => (
+        <li><strong>{s.title}</strong><br />{s.text}</li>
+      ))}
+    </ul>
+
+    <h2>Visit or call</h2>
+    <p><strong>{site.name}</strong> ({site.legalName})<br />{site.address}<br /><a href={telHref}>{site.phone}</a></p>
+    <p>{home.hours} <a href={mapsHref}>Get directions</a></p>
+
+    <h2>Text message updates</h2>
+    <p>If you ask us to, we can send text messages about appointments and documents. Texting is optional. You can sign up on our <a href="/contact">contact page</a>, on our client paperwork, or by asking our office. Reply STOP at any time to opt out. See our <a href="/sms-terms">Text Messaging Terms</a> and <a href="/privacy">Privacy Policy</a>.</p>
   </main>
 </Base>
+
+<style>
+  .hero { background: #fff; border-bottom: 1px solid var(--line); }
+  .hero .wrap { max-width: 760px; margin: 0 auto; padding: 56px 22px 48px; }
+  .hero h1 { font-size: 44px; margin: 0; }
+  .legal { color: var(--muted); margin: 2px 0 18px; }
+  .tagline { font-size: 22px; font-weight: 600; margin: 0 0 6px; }
+  .intro { font-size: 18px; margin: 0 0 24px; }
+  .btn { display: inline-block; padding: 11px 22px; border-radius: 6px; background: var(--accent); color: #fff; text-decoration: none; margin: 0 10px 10px 0; }
+  .btn.alt { background: #fff; color: var(--accent); border: 2px solid var(--accent); padding: 9px 20px; }
+  .cards { list-style: none; padding: 0; display: grid; gap: 14px; }
+  .cards li { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
+</style>
