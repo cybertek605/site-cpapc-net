@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, telHref, helpTelHref } from '../site.config';
+import { site, telHref } from '../site.config';
 ---
 <Base title={`Privacy Policy and Text Messaging Terms: ${site.name}`} description={`Privacy policy and text messaging terms of service for ${site.name} (${site.legalName}).`}>
   <main class="legal">
@@ -49,7 +49,7 @@ import { site, telHref, helpTelHref } from '../site.config';
     <p>You may opt out of receiving text messages at any time by replying <strong>STOP</strong> to any message you receive from us. After you opt out, you will receive a confirmation message and we will stop sending text messages to your number. Reply <strong>START</strong> to begin receiving messages again.</p>
 
     <h3>How to get help</h3>
-    <p>If you need assistance or have questions about our text messaging, reply <strong>HELP</strong> to any message, or call {site.name} at <a href={helpTelHref}>{site.helpPhone}</a>. Our main office line is <a href={telHref}>{site.phone}</a>.</p>
+    <p>If you need assistance or have questions about our text messaging, reply <strong>HELP</strong> to any message, or call {site.name} at <a href={telHref}>{site.phone}</a>.</p>
 
     <h3>Privacy</h3>
     <p>Your phone number is handled in accordance with the Privacy Policy above. We do not sell or share your phone number with third parties except as required by law or as needed to deliver your messages through our phone system and carrier.</p>

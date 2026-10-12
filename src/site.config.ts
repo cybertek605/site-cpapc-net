@@ -9,8 +9,7 @@ export const site = {
   name: 'CPA PC',
   legalName: 'Victor Schmitz CPA, PC',
   domain: 'www.cpapc.net',
-  phone: '(605) 775-2435',        // main office line
-  helpPhone: '(605) 842-1708',    // number in the campaign's HELP auto-response
+  phone: '(605) 775-2435',        // the ONLY phone number on the site
   address: '738 Main St, Burke, SD 57523',
   location: 'Burke, South Dakota',
   effectiveDate: 'October 12, 2026',
@@ -28,10 +27,8 @@ export const site = {
       'CPA PC: Thank you for opting into SMS updates, account notifications, reminders, and event notifications. Reply HELP for help. Message frequency may vary. Msg & Data rates may apply. To opt out at any time reply STOP.',
     optOutMessage:
       'CPA PC: Thank you for opting-out of SMS messaging. You are now unsubscribed and will receive no further messages. To opt back in at any time, reply START.',
-    helpMessage:
-      'CPA PC: Please call us at 605-842-1708 or visit https://www.cpapc.net for help.',
+    // The HELP auto-response is configured in the Telnyx campaign, not on this site.
   },
 };
 
 export const telHref = `tel:${site.phone.replace(/[^0-9+]/g, '')}`;
-export const helpTelHref = `tel:${site.helpPhone.replace(/[^0-9+]/g, '')}`;
