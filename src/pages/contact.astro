@@ -5,19 +5,24 @@ import { site, telHref } from '../site.config';
 <Base title={`Contact ${site.name}`} description={`Contact ${site.name} (${site.legalName}), ${site.location}.`}>
   <main>
     <h1>Contact {site.name}</h1>
-    <p class="sub">{site.legalName} &middot; {site.location}</p>
-    <p>Call us at <a href={telHref}>{site.phone}</a>, visit {site.address}, or send us a message below.</p>
+    <p class="sub">{site.legalName}, {site.location}</p>
 
+    <dl class="ledger">
+      <div class="entry"><dt>Phone</dt><dd><a href={telHref}>{site.phone}</a></dd></div>
+      <div class="entry"><dt>Office</dt><dd>{site.address}</dd></div>
+    </dl>
+
+    <h2>Send us a message</h2>
     <form id="contact-form" data-endpoint={site.formEndpoint} data-phone={site.phone} novalidate>
-      <p><label for="name">Name <span class="req">(required)</span></label><br /><input id="name" name="name" type="text" autocomplete="name" maxlength="100" required /></p>
-      <p><label for="email">Email</label><br /><input id="email" name="email" type="email" autocomplete="email" maxlength="200" /></p>
-      <p><label for="phone">Phone</label><br /><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" /></p>
-      <p><label for="message">Message <span class="req">(required)</span></label><br /><textarea id="message" name="message" rows="5" maxlength="3000" required></textarea></p>
+      <p class="field"><label for="name">Name <span class="req">(required)</span></label><input id="name" name="name" type="text" autocomplete="name" maxlength="100" required /></p>
+      <p class="field"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" maxlength="200" /></p>
+      <p class="field"><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" /></p>
+      <p class="field"><label for="message">Message <span class="req">(required)</span></label><textarea id="message" name="message" rows="5" maxlength="3000" required></textarea></p>
 
       <p class="consent">
         <label>
           <input type="checkbox" name="sms_consent" value="yes" />
-          I consent to receive text messages ({site.sms.messageTypes}) from {site.name} at the phone number I provided. I acknowledge that my consent is not a condition of receiving services. Msg &amp; data rates may apply. Msg frequency varies. Reply HELP for assistance or STOP to opt out of receiving messages. Privacy Policy and Terms: <a href="/privacy-policy">{site.domain}/privacy-policy</a>.
+          <span>I consent to receive text messages ({site.sms.messageTypes}) from {site.name} at the phone number I provided. I acknowledge that my consent is not a condition of receiving services. Msg &amp; data rates may apply. Msg frequency varies. Reply HELP for assistance or STOP to opt out of receiving messages. Privacy Policy and Terms: <a href="/privacy-policy">{site.domain}/privacy-policy</a>.</span>
         </label>
       </p>
 
@@ -25,25 +30,12 @@ import { site, telHref } from '../site.config';
       <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off" /></label></div>
       <input type="hidden" name="ts" id="ts" value="" />
 
-      <p><button type="submit">Send message</button></p>
+      <p><button class="btn" type="submit">Send message</button></p>
       <p id="form-status" role="status" aria-live="polite"></p>
       <noscript><p>This form needs JavaScript. Please call us at {site.phone}.</p></noscript>
     </form>
   </main>
 </Base>
-
-<style>
-  form input[type="text"], form input[type="email"], form input[type="tel"], form textarea {
-    width: 100%; max-width: 520px; padding: 10px; font: inherit; border: 1px solid #999; border-radius: 6px; background: #fff;
-  }
-  .req { color: var(--muted); font-size: 14px; }
-  .consent { border: 1px solid #bbb; border-radius: 6px; padding: 14px 16px; background: #fff; font-size: 15px; line-height: 1.6; }
-  .consent input { margin-right: 8px; transform: scale(1.2); }
-  .hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
-  button { font: inherit; padding: 10px 22px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
-  button[disabled] { opacity: .6; cursor: default; }
-  #form-status { font-weight: 600; }
-</style>
 
 <script is:inline>
   (function () {

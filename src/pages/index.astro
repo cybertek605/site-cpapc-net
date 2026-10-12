@@ -5,42 +5,36 @@ import { home } from '../content';
 const mapsHref = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(site.address)}`;
 ---
 <Base title={`${site.name} | ${site.legalName}`} description={`${site.name} (${site.legalName}), a CPA firm in ${site.location}.`}>
-  <section class="hero">
-    <div class="wrap">
+  <main>
+    <section class="hero">
       <h1>{site.name}</h1>
-      <p class="legal">{site.legalName}</p>
+      <p class="legal-name">{site.legalName}</p>
       <p class="tagline">{home.tagline}</p>
       <p class="intro">{home.intro}</p>
-      <p class="cta"><a class="btn" href={telHref}>Call {site.phone}</a> <a class="btn alt" href="/contact">Send a message</a></p>
-    </div>
-  </section>
+      <p class="actions">
+        <a class="btn" href={telHref}>Call {site.phone}</a>
+        <a class="btn btn-quiet" href="/contact">Send a message</a>
+      </p>
+      <dl class="ledger">
+        <div class="entry"><dt>Phone</dt><dd><a href={telHref}>{site.phone}</a></dd></div>
+        <div class="entry"><dt>Office</dt><dd>{site.address}</dd></div>
+        <div class="entry"><dt>Hours</dt><dd>{home.hours}</dd></div>
+        <div class="entry"><dt>Directions</dt><dd><a href={mapsHref}>Open in Google Maps</a></dd></div>
+      </dl>
+    </section>
 
-  <main>
-    <h2>What we do</h2>
-    <ul class="cards">
-      {home.services.map((s) => (
-        <li><strong>{s.title}</strong><br />{s.text}</li>
-      ))}
-    </ul>
+    <section>
+      <h2>What we do</h2>
+      <ul class="rows">
+        {home.services.map((s) => (
+          <li><strong>{s.title}</strong>{s.text}</li>
+        ))}
+      </ul>
+    </section>
 
-    <h2>Visit or call</h2>
-    <p><strong>{site.name}</strong> ({site.legalName})<br />{site.address}<br /><a href={telHref}>{site.phone}</a></p>
-    <p>{home.hours} <a href={mapsHref}>Get directions</a></p>
-
-    <h2>Text message updates</h2>
-    <p>You can choose to receive text messages from us. Texting is optional. To sign up, enter your phone number on our <a href="/contact">contact form</a> and select the text message checkbox. Reply STOP at any time to opt out. See our <a href="/privacy-policy">Privacy Policy</a> and <a href="/privacy-policy#terms">Text Messaging Terms</a>.</p>
+    <section>
+      <h2>Text message updates</h2>
+      <p class="note">You can choose to receive text messages from us. Texting is optional. To sign up, enter your phone number on our <a href="/contact">contact form</a> and select the text message checkbox. Reply STOP at any time to opt out. See our <a href="/privacy-policy">Privacy Policy</a> and <a href="/privacy-policy#terms">Text Messaging Terms</a>.</p>
+    </section>
   </main>
 </Base>
-
-<style>
-  .hero { background: #fff; border-bottom: 1px solid var(--line); }
-  .hero .wrap { max-width: 760px; margin: 0 auto; padding: 56px 22px 48px; }
-  .hero h1 { font-size: 44px; margin: 0; }
-  .legal { color: var(--muted); margin: 2px 0 18px; }
-  .tagline { font-size: 22px; font-weight: 600; margin: 0 0 6px; }
-  .intro { font-size: 18px; margin: 0 0 24px; }
-  .btn { display: inline-block; padding: 11px 22px; border-radius: 6px; background: var(--accent); color: #fff; text-decoration: none; margin: 0 10px 10px 0; }
-  .btn.alt { background: #fff; color: var(--accent); border: 2px solid var(--accent); padding: 9px 20px; }
-  .cards { list-style: none; padding: 0; display: grid; gap: 14px; }
-  .cards li { background: #fff; border: 1px solid var(--line); border-radius: 8px; padding: 16px 18px; }
-</style>
