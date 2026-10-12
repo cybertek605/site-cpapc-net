@@ -1,26 +1,6 @@
 ---
-import Base from '../layouts/Base.astro';
-import { site } from '../site.config';
 ---
-<Base title={`Text Message Consent Form: ${site.name}`} description={`Printable text message consent form for ${site.name} (${site.legalName}).`}>
-  <main>
-    <h1>Text Message Consent Form</h1>
-    <p class="sub">{site.name} ({site.legalName}). Optional. Print, sign, and return to our office.</p>
-
-    <p>{site.name} can send you text messages about {site.sms.messageTypes}. Text messaging is optional, and you can still receive our services without it.</p>
-
-    <p class="consent">&#9744; I consent to receive text messages about {site.sms.messageTypes} from {site.name} at the mobile phone number I provided. I acknowledge that my consent is not a condition of receiving services. Msg &amp; data rates may apply. Msg frequency varies. Reply HELP for assistance or STOP to opt out of receiving messages. Privacy Policy: {site.domain}/privacy. Terms: {site.domain}/sms-terms.</p>
-
-    <p class="line">Full name: ______________________________________</p>
-    <p class="line">Mobile phone number: ______________________________</p>
-    <p class="line">Signature: _______________________________________</p>
-    <p class="line">Date: ____________________</p>
-
-    <p class="sub">{site.name}, {site.address}. {site.phone}</p>
-  </main>
-</Base>
-<style>
-  .consent { border: 1px solid #999; padding: 16px; border-radius: 6px; background: #fff; }
-  .line { margin: 26px 0; }
-  @media print { header.top, footer { display: none; } body { background: #fff; } }
-</style>
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8" /><title>Redirecting</title>
+<meta http-equiv="refresh" content="0; url=/contact" /><meta name="robots" content="noindex" /></head>
+<body><p><a href="/contact">Contact form</a></p></body></html>

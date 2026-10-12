@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
-  site: 'https://cpapc.net',   // CHANGE PER CUSTOMER
+  site: 'https://www.cpapc.net',   // CHANGE PER CUSTOMER
   output: 'static',
   trailingSlash: 'never',
-  build: { format: 'file' },   // /sms-terms.html is served at /sms-terms
+  build: { format: 'file' },   // /privacy-policy.html is served at /privacy-policy
 });

@@ -1,0 +1,63 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, telHref, helpTelHref } from '../site.config';
+---
+<Base title={`Privacy Policy and Text Messaging Terms: ${site.name}`} description={`Privacy policy and text messaging terms of service for ${site.name} (${site.legalName}).`}>
+  <main>
+    <h1>Privacy Policy and Text Messaging Terms</h1>
+    <p class="sub">{site.name} ({site.legalName}). Effective {site.effectiveDate}. Jump to: <a href="#privacy">Privacy Policy</a> | <a href="#terms">Text Messaging Terms of Service</a></p>
+
+    <h2 id="privacy">Privacy Policy</h2>
+
+    <h3>Information we collect</h3>
+    <p>When you contact or text {site.name}, we may collect personally identifiable information such as your name, your mobile phone number, your email address, the content of your messages, and the date and time of each message. This website does not use analytics or tracking scripts.</p>
+    <p>If you use the contact form on this website, we receive what you type into it (your name, email address, phone number, and message), whether you checked the optional text message consent box, and the date, time, and IP address of your submission. The form is delivered to our office by email through the automation system run by Cybertek Systems.</p>
+
+    <h3>How we use your information</h3>
+    <p>We use this information only to communicate with you about the services you have asked about or are receiving from {site.name}, such as updates, account notifications, reminders, and event notifications.</p>
+
+    <h3>How we share your information</h3>
+    <p>We do not sell, rent, or disclose your personal information to third parties without your consent, except as required by law or as needed to deliver your messages. We do not share it with third parties for marketing purposes.</p>
+    <p><strong>No phone/mobile number information will be shared with third parties/affiliates for marketing/promotional purposes. All the above categories exclude text messaging originator opt-in data and consent; this information will not be shared with any third parties.</strong></p>
+    <p>Text messages are delivered through the business phone system operated for {site.name} by Cybertek Systems, a managed IT services provider in Winner, South Dakota, and its telecommunications carrier. These service providers handle messages only to deliver them and keep them secure. They do not use your information for their own marketing.</p>
+
+    <h3>Retention and security</h3>
+    <p>Messages are kept only as long as needed to serve you or as the law requires. We use reasonable technical and administrative safeguards to protect them.</p>
+
+    <h3>Your choices: opting out and deleting your data</h3>
+    <p>Reply <strong>STOP</strong> at any time to stop receiving text messages. To ask what information we hold about you, or to have it corrected or deleted, call <a href={telHref}>{site.phone}</a>.</p>
+
+    <h3>Contact</h3>
+    <p>{site.name} ({site.legalName}), {site.address}. Phone: <a href={telHref}>{site.phone}</a>.</p>
+
+    <h2 id="terms">Text Messaging Terms of Service</h2>
+
+    <h3>Program description</h3>
+    <p>{site.name}, the business name of {site.legalName} ({site.location}), uses text messaging to send customer care messages, such as {site.sms.messageTypes}. These are not marketing or promotional messages. Affiliate marketing is not part of this program, and we do not collect or sell consumer information for leads.</p>
+
+    <h3>How you opt in</h3>
+    <p>{site.sms.optInHow}</p>
+    <p>After you opt in, you receive this confirmation: <em>"{site.sms.optInMessage}"</em></p>
+
+    <h3>Message and data rates</h3>
+    <p>Standard message and data rates may apply, depending on your mobile carrier and plan.</p>
+
+    <h3>Message frequency</h3>
+    <p>Message frequency may vary.</p>
+
+    <h3>How to opt out</h3>
+    <p>You may opt out of receiving text messages at any time by replying <strong>STOP</strong> to any message you receive from us. After you opt out, you will receive a confirmation message and we will stop sending text messages to your number. Reply <strong>START</strong> to begin receiving messages again.</p>
+
+    <h3>How to get help</h3>
+    <p>If you need assistance or have questions about our text messaging, reply <strong>HELP</strong> to any message, or call {site.name} at <a href={helpTelHref}>{site.helpPhone}</a>. Our main office line is <a href={telHref}>{site.phone}</a>.</p>
+
+    <h3>Privacy</h3>
+    <p>Your phone number is handled in accordance with the Privacy Policy above. We do not sell or share your phone number with third parties except as required by law or as needed to deliver your messages through our phone system and carrier.</p>
+
+    <h3>Carriers</h3>
+    <p>Carriers are not liable for delayed or undelivered messages.</p>
+
+    <h3>Changes to these terms</h3>
+    <p>We may update these terms. The effective date at the top of this page will change when we do.</p>
+  </main>
+</Base>
