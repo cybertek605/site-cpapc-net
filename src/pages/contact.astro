@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import { site, telHref } from '../site.config';
+---
+<Base title={`Contact ${site.name}`} description={`Contact ${site.name} (${site.legalName}), ${site.location}.`}>
+  <main>
+    <h1>Contact {site.name}</h1>
+    <p class="sub">{site.legalName} &middot; {site.location}</p>
+    <p>Call us at <a href={telHref}>{site.phone}</a>, visit {site.address}, or send us a message below.</p>
+
+    <form id="contact-form" data-endpoint={site.formEndpoint} data-phone={site.phone} novalidate>
+      <p><label for="name">Name <span class="req">(required)</span></label><br /><input id="name" name="name" type="text" autocomplete="name" maxlength="100" required /></p>
+      <p><label for="email">Email</label><br /><input id="email" name="email" type="email" autocomplete="email" maxlength="200" /></p>
+      <p><label for="phone">Phone</label><br /><input id="phone" name="phone" type="tel" autocomplete="tel" maxlength="30" /></p>
+      <p><label for="message">Message <span class="req">(required)</span></label><br /><textarea id="message" name="message" rows="5" maxlength="3000" required></textarea></p>
+
+      <p class="consent">
+        <label>
+          <input type="checkbox" name="sms_consent" value="yes" />
+          I consent to receive text messages about {site.sms.messageTypes} from {site.name} at the phone number I provided. I acknowledge that my consent is not a condition of receiving services. Msg &amp; data rates may apply. Msg frequency varies. Reply HELP for assistance or STOP to opt out of receiving messages. Privacy Policy and Terms: <a href="/privacy">{site.domain}/privacy</a> and <a href="/sms-terms">{site.domain}/sms-terms</a>.
+        </label>
+      </p>
+
+      <!-- spam traps: hidden field + form-open timestamp -->
+      <div class="hp" aria-hidden="true"><label>Leave this empty <input type="text" name="website_url_hp" tabindex="-1" autocomplete="off" /></label></div>
+      <input type="hidden" name="ts" id="ts" value="" />
+
+      <p><button type="submit">Send message</button></p>
+      <p id="form-status" role="status" aria-live="polite"></p>
+      <noscript><p>This form needs JavaScript. Please call us at {site.phone}.</p></noscript>
+    </form>
+  </main>
+</Base>
+
+<style>
+  form input[type="text"], form input[type="email"], form input[type="tel"], form textarea {
+    width: 100%; max-width: 520px; padding: 10px; font: inherit; border: 1px solid #999; border-radius: 6px; background: #fff;
+  }
+  .req { color: var(--muted); font-size: 14px; }
+  .consent { border: 1px solid #bbb; border-radius: 6px; padding: 14px 16px; background: #fff; font-size: 15px; line-height: 1.6; }
+  .consent input { margin-right: 8px; transform: scale(1.2); }
+  .hp { position: absolute; left: -9999px; height: 0; overflow: hidden; }
+  button { font: inherit; padding: 10px 22px; border: 0; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; }
+  button[disabled] { opacity: .6; cursor: default; }
+  #form-status { font-weight: 600; }
+</style>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('contact-form');
+    var statusEl = document.getElementById('form-status');
+    document.getElementById('ts').value = String(Date.now());
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var name = form.elements['name'].value.trim();
+      var email = form.elements['email'].value.trim();
+      var phone = form.elements['phone'].value.trim();
+      var message = form.elements['message'].value.trim();
+      var consent = form.elements['sms_consent'].checked;
+      if (!name || !message) { statusEl.textContent = 'Please enter your name and a message.'; return; }
+      if (!email && !phone) { statusEl.textContent = 'Please enter an email address or a phone number.'; return; }
+      if (consent && !phone) { statusEl.textContent = 'Please enter your phone number so we can text you, or uncheck the text message box.'; return; }
+      var data = new URLSearchParams();
+      new FormData(form).forEach(function (v, k) { data.append(k, String(v)); });
+      var btn = form.querySelector('button[type=submit]');
+      btn.disabled = true; statusEl.textContent = 'Sending...';
+      fetch(form.getAttribute('data-endpoint'), { method: 'POST', body: data })
+        .then(function (res) {
+          if (res.ok) { form.reset(); document.getElementById('ts').value = String(Date.now()); statusEl.textContent = 'Thank you. Your message was sent.'; }
+          else if (res.status === 400) { statusEl.textContent = 'Please check your name, message, and contact details and try again.'; }
+          else { throw new Error('bad status'); }
+        })
+        .catch(function () { statusEl.textContent = 'Sorry, something went wrong. Please call us at ' + form.getAttribute('data-phone') + '.'; })
+        .then(function () { btn.disabled = false; });
+    });
+  })();
+</script>
